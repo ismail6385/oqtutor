@@ -87,44 +87,44 @@
 }
 
 :root {
-  /* Single Color Theme: #7c3bed Only */
-  /* Primary: #7c3bed -> 262 83% 58% */
-  /* Secondary: Neutral Slate (to avoid a second color) -> 210 40% 96.1% */
-  /* Accent: #7c3bed -> 262 83% 58% */
+  /* Facebook Blue Palette */
+  /* Primary: #1877F2 -> 214 89% 52% */
+  /* Primary Hover: #166FE5 -> 214 82% 49% */
+  /* Background: #F0F2F5 -> 216 20% 95% */
+  /* Cards: #FFFFFF -> 0 0% 100% */
+  /* Headings: #0B1F4D -> 222 75% 17% */
+  /* Text: #606770 -> 214 8% 41% */
+  /* Borders: #DADDE1 -> 214 9% 87% */
+  /* Success: #42B72A -> 110 63% 44% */
+  /* Error: #FA383E -> 358 95% 60% */
 
-  --background: 0 0% 100%;
-  /* Pure White */
-  --foreground: 222.2 84% 4.9%;
-  /* Slate 950 */
+  --background: 216 20% 95%;
+  --foreground: 214 8% 41%;
 
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 214 8% 41%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover-foreground: 214 8% 41%;
 
-  --primary: 262 83% 58%;
-  /* #7c3bed */
-  --primary-foreground: 210 40% 98%;
+  --primary: 217 100% 52%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96.1%;
-  /* Neutral Slate */
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 216 20% 95%;
+  --secondary-foreground: 222 75% 17%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 214 9% 87%;
+  --muted-foreground: 214 8% 41%;
 
-  --accent: 262 83% 58%;
-  /* #7c3bed (Same as Primary) */
-  --accent-foreground: 210 40% 98%;
+  --accent: 214 82% 49%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 358 95% 60%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 262 83% 58%;
-  /* #7c3bed */
+  --border: 214 9% 87%;
+  --input: 214 9% 87%;
+  --ring: 217 100% 52%;
 
   --radius: 0.75rem;
 }

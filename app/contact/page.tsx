@@ -78,8 +78,8 @@ export default function ContactPage() {
                                     <Phone className="h-7 w-6 text-primary" aria-hidden="true" />
                                 </dt>
                                 <dd>
-                                    <a className="hover:text-primary" href="tel:+1234567890">
-                                        +1 (234) 567-890
+                                    <a className="hover:text-primary" href="tel:+923478704442">
+                                        +92 347 8704442
                                     </a>
                                 </dd>
                             </div>

@@ -34,15 +34,16 @@ export default function CoursePage() {
         <div className="bg-background min-h-screen">
             {/* Hero Section */}
             <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-                {/* Background Image with Overlay */}
+                {/* Background Gradient (No Image) */}
                 <div className="absolute inset-0 z-0">
-                    <img
-                        src={course.heroImage || "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"}
-                        alt={course.title}
-                        className="w-full h-full object-cover"
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: `linear-gradient(135deg, ${course.color || '#0f172a'} 0%, #020617 100%)`
+                        }}
                     />
-                    <div className="absolute inset-0 bg-black/60" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                    {/* Subtle pattern overlay for texture */}
+                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
                 </div>
 
                 <div className="relative z-10 container mx-auto px-6 text-center">
@@ -51,7 +52,10 @@ export default function CoursePage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 backdrop-blur-md text-sm font-semibold mb-6">
+                        <span
+                            className="inline-block px-4 py-1.5 rounded-full text-white border border-white/30 backdrop-blur-md text-sm font-semibold mb-6 shadow-lg"
+                            style={{ backgroundColor: course.color ? `${course.color}80` : 'rgba(255,255,255,0.2)' }}
+                        >
                             {course.category} Course
                         </span>
                         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
@@ -61,7 +65,15 @@ export default function CoursePage() {
                             {course.description}
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Button size="lg" className="h-14 px-8 rounded-full text-lg font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all" asChild>
+                            <Button
+                                size="lg"
+                                className="h-14 px-8 rounded-full text-lg font-semibold shadow-lg transition-all text-white border-0"
+                                style={{
+                                    backgroundColor: course.color || 'hsl(var(--primary))',
+                                    boxShadow: `0 10px 25px -5px ${course.color}80`
+                                }}
+                                asChild
+                            >
                                 <Link href="/register">Enroll Now</Link>
                             </Button>
                             <Button variant="outline" size="lg" className="h-14 px-8 rounded-full text-lg font-semibold bg-white/5 border-white/20 text-white hover:bg-white/10" asChild>

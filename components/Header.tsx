@@ -40,7 +40,7 @@ export default function Header() {
     const academicCourses = courses.filter(c => c.category === "Academic")
 
     // Pages with dark hero sections where header text should be white initially
-    const hasDarkHero = pathname === "/about"
+    const hasDarkHero = pathname === "/about" || pathname?.startsWith("/courses/")
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,14 +53,14 @@ export default function Header() {
     return (
         <header
             className={cn(
-                "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+                "fixed inset-x-0 top-0 z-[100] transition-all duration-300",
                 scrolled
-                    ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-black/5"
-                    : "bg-transparent"
+                    ? "bg-white shadow-md border-b border-gray-200 py-2"
+                    : cn("py-4", hasDarkHero ? "bg-gradient-to-b from-black/50 to-transparent" : "bg-transparent")
             )}
         >
-            {/* Top Bar - Premium Dark Theme */}
-            <div className="bg-foreground text-white/90 py-2.5 px-6 lg:px-8 hidden lg:block border-b border-white/10">
+            {/* Top Bar - Premium Brand Theme */}
+            <div className="bg-primary text-primary-foreground/90 py-2.5 px-6 lg:px-8 hidden lg:block border-b border-white/10">
                 <div className="mx-auto max-w-7xl flex items-center justify-between text-xs font-medium tracking-wide">
                     <div className="flex items-center gap-8">
                         <div className="flex items-center gap-6">
@@ -70,17 +70,21 @@ export default function Header() {
                                 </div>
                                 info@oqtutor.com
                             </a>
-                            <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
+                            <a href="tel:+923478704442" className="flex items-center gap-2 hover:text-white transition-colors duration-300 group">
                                 <div className="p-1 rounded-full bg-white/10 group-hover:bg-primary/20 transition-colors">
                                     <FontAwesomeIcon icon={faPhone} className="h-3 w-3 text-primary" />
                                 </div>
-                                +1 (234) 567-890
+                                +92 347 8704442
                             </a>
                         </div>
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <div className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+                        <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full border border-white/20 animate-pulse shadow-sm">
+                            <span className="text-amber-300 font-bold">🎉 Special Offer:</span>
+                            <span className="text-white">Get <span className="font-bold text-white underline decoration-amber-300 decoration-2 underline-offset-2">3 Days Free Trial</span></span>
+                        </div>
+                        <div className="hidden xl:flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
                             <div className="flex -space-x-1">
                                 {[1, 2, 3].map(i => (
                                     <div key={i} className="h-4 w-4 rounded-full bg-white/20 border border-white/10" />
@@ -90,10 +94,10 @@ export default function Header() {
                         </div>
                         <div className="h-4 w-px bg-white/10" />
                         <a
-                            href="https://wa.me/1234567890"
+                            href="https://wa.me/923478704442"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-semibold"
+                            className="flex items-center gap-2 text-white hover:text-amber-300 transition-colors font-semibold"
                         >
                             <FontAwesomeIcon icon={faWhatsapp} className="h-4 w-4" />
                             WhatsApp Support
@@ -104,18 +108,18 @@ export default function Header() {
 
             {/* Main Navigation */}
             <nav
-                className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+                className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-8"
                 aria-label="Global"
             >
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-3 group">
                         <div className="bg-primary/10 p-2 rounded-xl group-hover:bg-primary/20 transition-colors">
-                            <FontAwesomeIcon icon={faBookOpen} className="h-6 w-6 text-primary" />
+                            <FontAwesomeIcon icon={faBookOpen} className={cn("h-6 w-6", hasDarkHero && !scrolled ? "text-white" : "text-primary")} />
                         </div>
                         <div className="flex flex-col">
                             <span className={cn(
                                 "text-xl font-bold tracking-tight leading-none transition-colors",
-                                hasDarkHero && !scrolled ? "text-white" : "text-foreground"
+                                hasDarkHero && !scrolled ? "text-white" : "text-gray-900"
                             )}>
                                 OQTutor
                             </span>
@@ -127,12 +131,15 @@ export default function Header() {
                     </Link>
                 </div>
 
-                <div className="flex lg:hidden">
+                <div className="flex items-center gap-4 lg:hidden">
+                    <Button size="sm" className="rounded-full shadow-lg shadow-amber-500/20 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0" asChild>
+                        <Link href="/register">Book Free Trial</Link>
+                    </Button>
                     <button
                         type="button"
                         className={cn(
                             "-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors",
-                            hasDarkHero && !scrolled ? "text-white" : "text-foreground"
+                            hasDarkHero && !scrolled ? "text-white" : "text-gray-900"
                         )}
                         onClick={() => setMobileMenuOpen(true)}
                     >
@@ -146,12 +153,15 @@ export default function Header() {
                         href="/"
                         className={cn(
                             "relative group flex items-center gap-2 text-sm font-medium leading-6 transition-colors py-2",
-                            hasDarkHero && !scrolled ? "text-white hover:text-white/80" : "text-foreground/80 hover:text-primary"
+                            hasDarkHero && !scrolled ? "text-white hover:text-white/80" : "text-gray-700 hover:text-primary"
                         )}
                     >
                         <FontAwesomeIcon icon={faHome} className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                         Home
-                        <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                        <span className={cn(
+                            "absolute inset-x-0 -bottom-0.5 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform origin-left",
+                            hasDarkHero && !scrolled ? "bg-white" : "bg-primary"
+                        )} />
                     </Link>
 
                     {/* Services Dropdown */}
@@ -162,7 +172,7 @@ export default function Header() {
                     >
                         <button className={cn(
                             "flex items-center gap-2 text-sm font-medium leading-6 transition-colors py-2 outline-none",
-                            hasDarkHero && !scrolled ? "text-white hover:text-white/80" : "text-foreground/80 hover:text-primary"
+                            hasDarkHero && !scrolled ? "text-white hover:text-white/80" : "text-gray-700 hover:text-primary"
                         )}>
                             <FontAwesomeIcon icon={faLayerGroup} className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                             Services
@@ -230,12 +240,15 @@ export default function Header() {
                             href={item.href}
                             className={cn(
                                 "relative group flex items-center gap-2 text-sm font-medium leading-6 transition-colors py-2",
-                                hasDarkHero && !scrolled ? "text-white hover:text-white/80" : "text-foreground/80 hover:text-primary"
+                                hasDarkHero && !scrolled ? "text-white hover:text-white/80" : "text-gray-700 hover:text-primary"
                             )}
                         >
                             <FontAwesomeIcon icon={item.icon} className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                             {item.name}
-                            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                            <span className={cn(
+                                "absolute inset-x-0 -bottom-0.5 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform origin-left",
+                                hasDarkHero && !scrolled ? "bg-white" : "bg-primary"
+                            )} />
                         </Link>
                     ))}
                 </div>
@@ -243,12 +256,12 @@ export default function Header() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
                     <Button variant="ghost" className={cn(
                         "font-semibold",
-                        hasDarkHero && !scrolled ? "text-white hover:text-white hover:bg-white/10" : ""
+                        hasDarkHero && !scrolled ? "text-white hover:text-white hover:bg-white/10" : "hover:bg-primary/5"
                     )} asChild>
                         <Link href="/login">Log in</Link>
                     </Button>
-                    <Button className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300" asChild>
-                        <Link href="/register">Get Started</Link>
+                    <Button className="rounded-full px-6 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 transition-all duration-300 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0 hover:scale-105" asChild>
+                        <Link href="/register">Book Free Trial</Link>
                     </Button>
                 </div>
             </nav>
@@ -374,13 +387,13 @@ export default function Header() {
                                             </div>
                                             info@oqtutor.com
                                         </a>
-                                        <a href="tel:+1234567890" className="flex items-center gap-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                                        <a href="tel:+923478704442" className="flex items-center gap-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                                             <div className="p-2 rounded-full bg-primary/10">
                                                 <FontAwesomeIcon icon={faPhone} className="h-4 w-4 text-primary" />
                                             </div>
-                                            +1 (234) 567-890
+                                            +92 347 8704442
                                         </a>
-                                        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                                        <a href="https://wa.me/923478704442" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                                             <div className="p-2 rounded-full bg-primary/10">
                                                 <FontAwesomeIcon icon={faWhatsapp} className="h-4 w-4 text-primary" />
                                             </div>
@@ -391,7 +404,7 @@ export default function Header() {
                                     <div className="py-6 space-y-4">
                                         <Button className="w-full rounded-full" size="lg" asChild>
                                             <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-                                                Get Started
+                                                Book Free Trial
                                             </Link>
                                         </Button>
                                         <Button variant="outline" className="w-full rounded-full" asChild>

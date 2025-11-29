@@ -155,7 +155,7 @@ export default function Footer() {
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <FontAwesomeIcon icon={faPhone} className="h-4 w-4 text-primary" />
-                                        +1 (234) 567-890
+                                        +92 347 8704442
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <FontAwesomeIcon icon={faMapMarkerAlt} className="h-4 w-4 text-primary" />
