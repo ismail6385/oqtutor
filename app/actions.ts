@@ -40,12 +40,19 @@ export async function submitContactForm(formData: FormData) {
             })
 
         if (dbError) {
-            console.error('Error saving to Supabase:', dbError)
-            // We continue to send email even if DB fails, or we could return error.
-            // For now, logging is safer to avoid breaking the user flow.
+            console.error(' Supabase DB Error:', dbError.message)
+            // Continue execution to try sending email
         }
 
         // 2. Send Email
+        // Check if API key is valid (not the placeholder)
+        if (!process.env.RESEND_API_KEY) {
+            console.warn('⚠️ Missing RESEND_API_KEY. Email will not be sent.')
+            // We return success true but with a note if we want, or just fail silently regarding email
+            // For user experience, if DB saved, we say success.
+            if (!dbError) return { success: true, message: 'Message saved (Email configuration pending).' }
+        }
+
         await resend.emails.send({
             from: 'OqTutor Contact Form <noreply@oqtutor.com>',
             to: 'imrankhang3920@gmail.com',
@@ -55,7 +62,7 @@ export async function submitContactForm(formData: FormData) {
                 <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
                 <p><strong>Email:</strong> ${data.email}</p>
                 <p><strong>Phone:</strong> ${data.phone}</p>
-                <p><strong>Interst/Course:</strong> ${data.interest || 'Not Specified'}</p>
+                <p><strong>Interest/Course:</strong> ${data.interest || 'Not Specified'}</p>
                 <p><strong>Selected Tutor:</strong> ${data.tutor || 'Not Specified'}</p>
                 ${meetingLink ? `<p><strong>Tutor Meeting Link:</strong> <a href="${meetingLink}">${meetingLink}</a></p>` : ''}
                 <p><strong>Source Page:</strong> ${data.source || 'General Contact'}</p>
@@ -63,9 +70,9 @@ export async function submitContactForm(formData: FormData) {
             `
         });
         return { success: true, message: 'Message sent successfully!' }
-    } catch (error) {
-        console.error('Error processing form:', error);
-        return { success: false, message: 'Failed to send message.' }
+    } catch (error: any) {
+        console.error('❌ Server Action Error:', error?.message || error);
+        return { success: false, message: 'Failed to process request. Please try again.' }
     }
 }
 
