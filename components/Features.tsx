@@ -1,90 +1,80 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-    faUserGraduate,
-    faClock,
-    faVideo,
-    faFemale,
-    faChartLine,
-    faTags
-} from "@fortawesome/free-solid-svg-icons"
-
-const features = [
-    {
-        name: "Expert Al-Azhar Tutors",
-        description: "Learn from certified tutors who have graduated from the prestigious Al-Azhar University.",
-        icon: faUserGraduate,
-    },
-    {
-        name: "24/7 Flexible Schedule",
-        description: "Book classes at any time that suits your busy lifestyle, day or night.",
-        icon: faClock,
-    },
-    {
-        name: "1-on-1 Live Classes",
-        description: "Get personalized attention and feedback in private, interactive video sessions.",
-        icon: faVideo,
-    },
-    {
-        name: "Female Tutors Available",
-        description: "We offer qualified female tutors for sisters and children, ensuring a comfortable learning environment.",
-        icon: faFemale,
-    },
-    {
-        name: "Progress Tracking",
-        description: "Monitor your improvement with regular reports and performance assessments.",
-        icon: faChartLine,
-    },
-    {
-        name: "Affordable Pricing",
-        description: "High-quality Quran education at competitive rates with family discounts available.",
-        icon: faTags,
-    },
-]
+import { Video, Clock, Award, HeadphonesIcon, Shield, TrendingUp } from 'lucide-react'
 
 export default function Features() {
-    return (
-        <div className="bg-background py-24 sm:py-32 relative overflow-hidden">
-            {/* Background Decoration */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10" />
+    const features = [
+        {
+            icon: Video,
+            title: 'Live 1-on-1 Classes',
+            description: 'Personal attention from expert tutors in interactive video sessions tailored to your learning pace.',
+        },
+        {
+            icon: Clock,
+            title: 'Flexible Scheduling',
+            description: 'Book lessons at times that work for you. Learn at your own pace, on your own schedule.',
+        },
+        {
+            icon: Award,
+            title: 'Certified Tutors',
+            description: 'All our tutors are certified, experienced, and passionate about teaching the Quran.',
+        },
+        {
+            icon: HeadphonesIcon,
+            title: '24/7 Support',
+            description: 'Our dedicated support team is always here to help you with any questions or concerns.',
+        },
+        {
+            icon: Shield,
+            title: 'Safe & Secure',
+            description: 'Your privacy and security are our top priorities. All sessions are encrypted and secure.',
+        },
+        {
+            icon: TrendingUp,
+            title: 'Track Progress',
+            description: 'Monitor your learning journey with detailed progress reports and achievement milestones.',
+        },
+    ]
 
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-base font-semibold leading-7 text-primary">Why Choose Us</h2>
-                    <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+    return (
+        <section className="py-16 md:py-24 bg-secondary">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                {/* Section Header */}
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                         Everything you need to master the Quran
-                    </p>
-                    <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                        We provide a comprehensive learning experience designed to help you achieve your spiritual goals from the comfort of your home.
+                    </h2>
+
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        We provide a comprehensive learning experience with the best tools,
+                        tutors, and support to help you achieve your Quranic goals.
                     </p>
                 </div>
-                <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                    <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-                        {features.map((feature, index) => (
-                            <motion.div
-                                key={feature.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="flex flex-col relative group"
-                            >
-                                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
-                                    <FontAwesomeIcon icon={feature.icon} className="h-6 w-6" aria-hidden="true" />
-                                </div>
-                                <dt className="text-xl font-bold leading-7 text-foreground">
-                                    {feature.name}
-                                </dt>
-                                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
-                                    <p className="flex-auto">{feature.description}</p>
-                                </dd>
-                            </motion.div>
-                        ))}
-                    </dl>
+
+                {/* Features Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {features.map((feature, index) => (
+                        <div
+                            key={index}
+                            className="p-8 rounded-2xl border border-border bg-white hover:border-primary/30 hover:shadow-xl transition-all duration-300"
+                        >
+                            {/* Icon */}
+                            <div className="w-14 h-14 rounded-2xl bg-primary/10 mb-6 flex items-center justify-center">
+                                <feature.icon className="w-7 h-7 text-primary" />
+                            </div>
+
+                            {/* Content */}
+                            <h3 className="text-xl font-bold text-foreground mb-3">
+                                {feature.title}
+                            </h3>
+
+                            <p className="text-muted-foreground leading-relaxed">
+                                {feature.description}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

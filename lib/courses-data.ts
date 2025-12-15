@@ -13,7 +13,9 @@ import {
     faCheckCircle,
     faClock,
     faUserGraduate,
-    faVideo
+    faVideo,
+    faComments,
+    faGlobe
 } from "@fortawesome/free-solid-svg-icons"
 
 export interface Course {
@@ -45,7 +47,7 @@ export const courses: Course[] = [
         duration: "3-6 Months",
         level: "Beginner",
         icon: faBookOpen,
-        heroImage: "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        heroImage: "/images/courses/naorani-qaedah.png",
         color: "#10B981", // Emerald
         features: [
             "Recognition of Arabic letters",
@@ -138,7 +140,7 @@ export const courses: Course[] = [
         duration: "6-12 Months",
         level: "Intermediate",
         icon: faBook,
-        heroImage: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=2070&q=80",
+        heroImage: "/images/courses/nazara-quran.png",
         color: "#059669", // Emerald Dark
         features: [
             "Fluent reading of the Quran",
@@ -207,7 +209,7 @@ export const courses: Course[] = [
         duration: "Flexible",
         level: "All Levels",
         icon: faStar,
-        heroImage: "https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=2070&q=80",
+        heroImage: "/images/courses/recitation.png",
         color: "#D97706", // Amber
         features: [
             "Advanced Tajweed rules",
@@ -403,306 +405,148 @@ export const courses: Course[] = [
         ]
     },
     {
-        slug: "math",
-        title: "Math",
-        category: "Academic",
-        description: "Comprehensive math tutoring from Grade 4 to University level.",
-        longDescription: "Our Math tutoring program covers a wide range of topics from basic arithmetic to advanced calculus. We tailor our lessons to the student's curriculum and learning pace, focusing on problem-solving skills and conceptual understanding.",
-        grades: "Grade 4 - University",
-        icon: faCalculator,
-        heroImage: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=2070&q=80",
-        color: "#EA580C", // Orange
+        slug: "islamic-studies",
+        title: "Islamic Studies",
+        category: "Islamic",
+        description: "Comprehensive Islamic education covering Fiqh, Seerah, and Islamic history.",
+        longDescription: "Our Islamic Studies course provides a comprehensive understanding of Islam beyond just Quran. Students will learn Islamic jurisprudence (Fiqh), the life of Prophet Muhammad ﷺ (Seerah), Islamic history, and contemporary Islamic issues. This course helps you become a well-rounded Muslim with deep knowledge of your faith.",
+        duration: "6-12 Months",
+        level: "Intermediate",
+        icon: faBookOpen,
+        heroImage: "/images/courses/islamic-studies.png",
+        color: "#FF7AAC", // Pink
         features: [
-            "Arithmetic & Algebra",
-            "Geometry & Trigonometry",
-            "Calculus & Statistics",
-            "Homework help",
-            "Exam preparation"
+            "Islamic jurisprudence (Fiqh)",
+            "Life of Prophet Muhammad ﷺ (Seerah)",
+            "Islamic history and civilization",
+            "Contemporary Islamic issues",
+            "Character development through Islamic teachings"
         ],
         curriculum: [
             {
-                title: "Module 1: Foundations",
-                description: "Strengthening basic arithmetic and number sense."
+                title: "Module 1: Introduction to Islamic Studies",
+                description: "Overview of Islamic knowledge and its importance in daily life."
             },
             {
-                title: "Module 2: Algebra",
-                description: "Equations, inequalities, and functions."
+                title: "Module 2: Fiqh (Islamic Jurisprudence)",
+                description: "Understanding Islamic rulings on worship, transactions, and daily matters."
             },
             {
-                title: "Module 3: Geometry",
-                description: "Shapes, angles, and proofs."
+                title: "Module 3: Seerah (Life of Prophet Muhammad ﷺ)",
+                description: "Detailed study of the Prophet's life, character, and teachings."
             },
             {
-                title: "Module 4: Calculus",
-                description: "Limits, derivatives, and integrals (for advanced students)."
+                title: "Module 4: Islamic History",
+                description: "Major events and personalities in Islamic history."
+            },
+            {
+                title: "Module 5: Contemporary Issues",
+                description: "Islamic perspective on modern challenges and questions."
             }
         ],
         benefits: [
             {
-                title: "Problem Solving",
-                description: "Develop critical thinking and analytical skills.",
-                icon: faCalculator
+                title: "Deep Understanding",
+                description: "Gain comprehensive knowledge of Islamic teachings.",
+                icon: faBookOpen
             },
             {
-                title: "Better Grades",
-                description: "Improve your school performance and exam scores.",
+                title: "Practical Application",
+                description: "Learn how to apply Islamic principles in modern life.",
                 icon: faCheckCircle
+            },
+            {
+                title: "Character Building",
+                description: "Develop Islamic character and values.",
+                icon: faHeart
+            },
+            {
+                title: "Expert Teachers",
+                description: "Learn from qualified Islamic scholars.",
+                icon: faUserGraduate
             }
         ],
         faqs: [
             {
-                question: "Do you cover my specific curriculum?",
-                answer: "Yes, we tailor our lessons to match your school's curriculum (e.g., Common Core, GCSE, IB)."
+                question: "Who should take this course?",
+                answer: "This course is for anyone who wants to deepen their Islamic knowledge beyond basic Quran reading. It's suitable for teenagers and adults."
+            },
+            {
+                question: "Do I need prior Islamic knowledge?",
+                answer: "Basic knowledge of Islam is helpful but not required. We start from fundamentals and build up gradually."
             }
         ]
     },
     {
-        slug: "chemistry",
-        title: "Chemistry",
-        category: "Academic",
-        description: "Understanding chemical principles, equations, and experiments.",
-        longDescription: "Explore the world of matter and reactions with our Chemistry tutoring. We cover organic, inorganic, and physical chemistry, helping students master complex concepts, chemical equations, and laboratory techniques.",
-        grades: "Grade 9 - 12 / O-A Level",
-        icon: faFlask,
-        heroImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2070&q=80",
-        color: "#9333EA", // Purple
-        features: [
-            "Atomic structure & Bonding",
-            "Chemical reactions & Stoichiometry",
-            "Organic Chemistry",
-            "Periodic Table trends",
-            "Lab report assistance"
-        ],
-        curriculum: [
-            {
-                title: "Module 1: Atomic Structure",
-                description: "Protons, neutrons, electrons, and the periodic table."
-            },
-            {
-                title: "Module 2: Bonding",
-                description: "Ionic, covalent, and metallic bonds."
-            },
-            {
-                title: "Module 3: Stoichiometry",
-                description: "Balancing equations and mole calculations."
-            }
-        ],
-        benefits: [
-            {
-                title: "Conceptual Clarity",
-                description: "Understand the 'why' behind chemical reactions.",
-                icon: faFlask
-            },
-            {
-                title: "Lab Skills",
-                description: "Get help with understanding lab experiments and reports.",
-                icon: faCheckCircle
-            }
-        ],
-        faqs: [
-            {
-                question: "Is this suitable for A-Levels?",
-                answer: "Yes, we have tutors specialized in O-Level, A-Level, and AP Chemistry."
-            }
-        ]
-    },
-    {
-        slug: "physics",
-        title: "Physics",
-        category: "Academic",
-        description: "Mastering concepts of motion, energy, and matter.",
-        longDescription: "Physics can be challenging, but our tutors make it easy to understand. We cover mechanics, electricity, magnetism, waves, and modern physics, using real-world examples to explain abstract concepts.",
-        grades: "Grade 9 - 12 / O-A Level",
-        icon: faAtom,
-        heroImage: "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=2070&q=80",
-        color: "#0891B2", // Cyan
-        features: [
-            "Mechanics & Motion",
-            "Electricity & Magnetism",
-            "Waves & Optics",
-            "Thermodynamics",
-            "Problem-solving strategies"
-        ],
-        curriculum: [
-            {
-                title: "Module 1: Mechanics",
-                description: "Forces, motion, energy, and momentum."
-            },
-            {
-                title: "Module 2: Electricity",
-                description: "Circuits, current, voltage, and resistance."
-            },
-            {
-                title: "Module 3: Waves",
-                description: "Light, sound, and electromagnetic spectrum."
-            }
-        ],
-        benefits: [
-            {
-                title: "Real-world Understanding",
-                description: "See how physics applies to the world around you.",
-                icon: faAtom
-            },
-            {
-                title: "Exam Success",
-                description: "Master the formulas and concepts needed for exams.",
-                icon: faCheckCircle
-            }
-        ],
-        faqs: [
-            {
-                question: "Do you help with physics problems?",
-                answer: "Yes, we focus heavily on problem-solving strategies."
-            }
-        ]
-    },
-    {
-        slug: "english",
-        title: "English",
-        category: "Academic",
-        description: "Improving reading, writing, and speaking skills.",
-        longDescription: "Enhance your English language skills with our comprehensive course. We focus on grammar, vocabulary, reading comprehension, creative writing, and spoken English to help students communicate effectively and excel in their studies.",
-        grades: "All Grades",
+        slug: "arabic",
+        title: "Arabic Language",
+        category: "Islamic",
+        description: "Learn to speak, read, and write Arabic from beginner to advanced level.",
+        longDescription: "Our Arabic Language course is designed to help you master Arabic from scratch. Whether you want to understand the Quran better, communicate with Arabic speakers, or explore Arabic literature, this comprehensive course covers everything from the alphabet to advanced grammar and conversation.",
+        duration: "12-18 Months",
+        level: "Beginner to Advanced",
         icon: faLanguage,
-        heroImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=2070&q=80",
-        color: "#DB2777", // Pink
+        heroImage: "/images/courses/arabic.png",
+        color: "#FF7AAC", // Pink
         features: [
-            "Grammar & Punctuation",
-            "Creative & Essay Writing",
-            "Reading Comprehension",
-            "Spoken English & Pronunciation",
-            "Literature analysis"
+            "Arabic alphabet and pronunciation",
+            "Grammar and sentence structure",
+            "Conversational Arabic",
+            "Quranic Arabic understanding",
+            "Reading and writing practice"
         ],
         curriculum: [
             {
-                title: "Module 1: Grammar Mastery",
-                description: "Parts of speech, tenses, and sentence structure."
+                title: "Module 1: Arabic Alphabet & Pronunciation",
+                description: "Master the 28 Arabic letters and their correct pronunciation."
             },
             {
-                title: "Module 2: Writing Skills",
-                description: "Essays, reports, and creative writing."
+                title: "Module 2: Basic Grammar",
+                description: "Learn fundamental grammar rules and sentence construction."
             },
             {
-                title: "Module 3: Reading Comprehension",
-                description: "Analyzing texts and understanding context."
+                title: "Module 3: Conversational Arabic",
+                description: "Practice everyday conversations and common phrases."
+            },
+            {
+                title: "Module 4: Quranic Arabic",
+                description: "Understand Arabic as used in the Quran."
+            },
+            {
+                title: "Module 5: Advanced Grammar",
+                description: "Master complex grammar structures and expressions."
             }
         ],
         benefits: [
             {
-                title: "Communication",
-                description: "Speak and write with confidence.",
-                icon: faLanguage
+                title: "Understand Quran",
+                description: "Read and understand the Quran in its original language.",
+                icon: faBookOpen
             },
             {
-                title: "Academic Excellence",
-                description: "Improve your grades in all subjects through better English.",
-                icon: faCheckCircle
+                title: "Speak Fluently",
+                description: "Communicate confidently with Arabic speakers.",
+                icon: faComments
+            },
+            {
+                title: "Cultural Connection",
+                description: "Connect with Arabic culture and heritage.",
+                icon: faGlobe
+            },
+            {
+                title: "Expert Teachers",
+                description: "Learn from native Arabic speakers.",
+                icon: faUserGraduate
             }
         ],
         faqs: [
             {
-                question: "Is this for ESL students?",
-                answer: "We have programs for both native speakers and ESL students."
-            }
-        ]
-    },
-    {
-        slug: "science",
-        title: "Science",
-        category: "Academic",
-        description: "General science education for younger students.",
-        longDescription: "Our General Science course is designed to spark curiosity in young minds. We cover the basics of biology, chemistry, and physics in an integrated and fun way, encouraging students to ask questions and explore the world around them.",
-        grades: "Grade 4 - 8",
-        icon: faMicroscope,
-        heroImage: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=2070&q=80",
-        color: "#65A30D", // Lime
-        features: [
-            "Living things & Ecosystems",
-            "Matter & Materials",
-            "Energy & Forces",
-            "Earth & Space",
-            "Scientific inquiry methods"
-        ],
-        curriculum: [
-            {
-                title: "Module 1: Life Science",
-                description: "Plants, animals, and the human body."
+                question: "Is Arabic difficult to learn?",
+                answer: "While Arabic has unique features, our structured approach makes it accessible. With consistent practice and expert guidance, you'll make steady progress."
             },
             {
-                title: "Module 2: Physical Science",
-                description: "Matter, energy, and simple machines."
-            },
-            {
-                title: "Module 3: Earth Science",
-                description: "Rocks, weather, and the solar system."
-            }
-        ],
-        benefits: [
-            {
-                title: "Curiosity",
-                description: "Foster a love for learning and discovery.",
-                icon: faMicroscope
-            },
-            {
-                title: "Foundation",
-                description: "Build a strong foundation for high school science.",
-                icon: faCheckCircle
-            }
-        ],
-        faqs: [
-            {
-                question: "Is it hands-on?",
-                answer: "We encourage simple home experiments to make learning active."
-            }
-        ]
-    },
-    {
-        slug: "entrance-test-preparation",
-        title: "Entrance Test Preparation",
-        category: "Academic",
-        description: "Specialized coaching for university entrance exams.",
-        longDescription: "Prepare for your university entrance exams with confidence. Our specialized coaching covers major entrance tests, focusing on key subjects, time management strategies, and practice with past papers to ensure high scores.",
-        grades: "Pre-University",
-        icon: faPencilAlt,
-        heroImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=2070&q=80",
-        color: "#4F46E5", // Indigo
-        features: [
-            "Subject-specific coaching",
-            "Mock tests & Past papers",
-            "Time management tips",
-            "Interview preparation",
-            "Personalized study plans"
-        ],
-        curriculum: [
-            {
-                title: "Module 1: Concept Review",
-                description: "Reviewing key concepts for the exam."
-            },
-            {
-                title: "Module 2: Practice Tests",
-                description: "Taking timed mock exams."
-            },
-            {
-                title: "Module 3: Strategy",
-                description: "Learning how to approach different question types."
-            }
-        ],
-        benefits: [
-            {
-                title: "High Scores",
-                description: "Maximize your chances of admission.",
-                icon: faPencilAlt
-            },
-            {
-                title: "Confidence",
-                description: "Walk into the exam room feeling prepared.",
-                icon: faCheckCircle
-            }
-        ],
-        faqs: [
-            {
-                question: "Which exams do you cover?",
-                answer: "We cover a wide range of university entrance exams. Please contact us for specifics."
+                question: "Will this help me understand the Quran?",
+                answer: "Absolutely! We include Quranic Arabic modules that help you understand the language of the Quran and enhance your connection with it."
             }
         ]
     }

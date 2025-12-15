@@ -1,175 +1,95 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-    faBookOpen,
-    faEnvelope,
-    faPhone,
-    faMapMarkerAlt,
-    faArrowRight
-} from "@fortawesome/free-solid-svg-icons"
-import {
-    faFacebook,
-    faTwitter,
-    faInstagram,
-    faYoutube
-} from "@fortawesome/free-brands-svg-icons"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-
-const navigation = {
-    courses: [
-        { name: "Quran Reading", href: "/services" },
-        { name: "Tajweed Rules", href: "/services" },
-        { name: "Hifz Memorization", href: "/services" },
-        { name: "Arabic Language", href: "/services" },
-        { name: "Islamic Studies", href: "/services" },
-    ],
-    company: [
-        { name: "About Us", href: "/about" },
-        { name: "Our Tutors", href: "/tutors" },
-        { name: "Pricing", href: "/pricing" },
-        { name: "Contact Us", href: "/contact" },
-        { name: "Privacy Policy", href: "/" },
-    ],
-    social: [
-        {
-            name: "Facebook",
-            href: "#",
-            icon: faFacebook,
-        },
-        {
-            name: "Twitter",
-            href: "#",
-            icon: faTwitter,
-        },
-        {
-            name: "Instagram",
-            href: "#",
-            icon: faInstagram,
-        },
-        {
-            name: "YouTube",
-            href: "#",
-            icon: faYoutube,
-        },
-    ],
-}
+import Link from 'next/link'
+import { BookOpen, Mail, Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
 
 export default function Footer() {
+    const quickLinks = [
+        { name: 'About Us', href: '/about' },
+        { name: 'Courses', href: '/courses' },
+        { name: 'Pricing', href: '/pricing' },
+        { name: 'Contact', href: '/contact' },
+    ]
+
+    const socialLinks = [
+        { name: 'Facebook', icon: Facebook, href: '#' },
+        { name: 'Twitter', icon: Twitter, href: '#' },
+        { name: 'Instagram', icon: Instagram, href: '#' },
+        { name: 'YouTube', icon: Youtube, href: '#' },
+    ]
+
     return (
-        <footer className="bg-zinc-900 text-zinc-300" aria-labelledby="footer-heading">
-            <h2 id="footer-heading" className="sr-only">
-                Footer
-            </h2>
-            <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-                <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+        <footer className="bg-foreground text-white">
+            {/* Main Footer Content */}
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
                     {/* Brand Column */}
-                    <div className="space-y-8">
-                        <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 text-white">
-                            <FontAwesomeIcon icon={faBookOpen} className="h-8 w-8 text-primary" />
-                            <span className="text-2xl font-bold tracking-tight">
+                    <div>
+                        <Link href="/" className="flex items-center gap-3 mb-6 group">
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                                <BookOpen className="w-7 h-7 text-white" />
+                            </div>
+                            <span className="text-2xl font-bold text-white group-hover:text-primary transition-colors">
                                 OQTutor
                             </span>
                         </Link>
-                        <p className="text-sm leading-6 text-zinc-400 max-w-sm">
-                            Empowering students worldwide to learn the Quran with proper Tajweed and understanding. Join our community of learners today.
+
+                        <p className="text-white/80 leading-relaxed mb-6">
+                            Your trusted partner in Quran and Islamic education. Connect with certified tutors
+                            for personalized online learning from anywhere in the world.
                         </p>
-                        <div className="flex space-x-6">
-                            {navigation.social.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    className="text-zinc-400 hover:text-primary transition-colors"
-                                >
-                                    <span className="sr-only">{item.name}</span>
-                                    <FontAwesomeIcon icon={item.icon} className="h-6 w-6" aria-hidden="true" />
-                                </Link>
-                            ))}
-                        </div>
+
+                        {/* Contact Email */}
+                        <a
+                            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@oqtutor.com'}`}
+                            className="flex items-center gap-3 text-white/80 hover:text-primary transition-colors group"
+                        >
+                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                <Mail className="w-5 h-5" />
+                            </div>
+                            <span>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@oqtutor.com'}</span>
+                        </a>
                     </div>
 
-                    {/* Links Columns */}
-                    <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-                        <div className="md:grid md:grid-cols-2 md:gap-8">
-                            <div>
-                                <h3 className="text-sm font-semibold leading-6 text-white">Courses</h3>
-                                <ul role="list" className="mt-6 space-y-4">
-                                    {navigation.courses.map((item) => (
-                                        <li key={item.name}>
-                                            <Link href={item.href} className="text-sm leading-6 hover:text-white transition-colors">
-                                                {item.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-white">Company</h3>
-                                <ul role="list" className="mt-6 space-y-4">
-                                    {navigation.company.map((item) => (
-                                        <li key={item.name}>
-                                            <Link href={item.href} className="text-sm leading-6 hover:text-white transition-colors">
-                                                {item.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+                    {/* Quick Links Column */}
+                    <div>
+                        <h3 className="text-sm font-bold text-white mb-6 uppercase tracking-wider">Quick Links</h3>
+                        <ul className="space-y-3">
+                            {quickLinks.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-white/70 hover:text-white transition-colors text-sm"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                        {/* Newsletter & Contact */}
-                        <div className="md:grid md:grid-cols-1 md:gap-8">
-                            <div>
-                                <h3 className="text-sm font-semibold leading-6 text-white">Subscribe to our newsletter</h3>
-                                <p className="mt-2 text-sm leading-6 text-zinc-400">
-                                    The latest news, articles, and resources, sent to your inbox weekly.
-                                </p>
-                                <form className="mt-6 sm:flex sm:max-w-md">
-                                    <label htmlFor="email-address" className="sr-only">
-                                        Email address
-                                    </label>
-                                    <Input
-                                        type="email"
-                                        name="email-address"
-                                        id="email-address"
-                                        autoComplete="email"
-                                        required
-                                        className="w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:w-64 sm:text-sm sm:leading-6"
-                                        placeholder="Enter your email"
-                                    />
-                                    <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
-                                        <Button type="submit" className="flex w-full items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white">
-                                            Subscribe <FontAwesomeIcon icon={faArrowRight} className="h-4 w-4" />
-                                        </Button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="mt-10 border-t border-white/10 pt-8">
-                                <h3 className="text-sm font-semibold leading-6 text-white mb-4">Contact Us</h3>
-                                <ul className="space-y-3 text-sm text-zinc-400">
-                                    <li className="flex items-center gap-2">
-                                        <FontAwesomeIcon icon={faEnvelope} className="h-4 w-4 text-primary" />
-                                        support@oqtutor.com
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <FontAwesomeIcon icon={faPhone} className="h-4 w-4 text-primary" />
-                                        +92 347 8704442
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="h-4 w-4 text-primary" />
-                                        123 Islamic Center Dr, City, State
-                                    </li>
-                                </ul>
-                            </div>
+                    {/* Social Links Column */}
+                    <div>
+                        <h3 className="text-sm font-bold text-white mb-6 uppercase tracking-wider">Follow Us</h3>
+                        <div className="flex items-center gap-4">
+                            {socialLinks.map((social) => (
+                                <a
+                                    key={social.name}
+                                    href={social.href}
+                                    className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-all duration-300"
+                                    aria-label={social.name}
+                                >
+                                    <social.icon className="w-5 h-5" />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-                    <p className="text-xs leading-5 text-zinc-500">
-                        &copy; {new Date().getFullYear()} OQTutor. All rights reserved.
+                {/* Copyright */}
+                <div className="pt-8 border-t border-white/10">
+                    <p className="text-white/60 text-sm text-center">
+                        © {new Date().getFullYear()} OQTutor. All rights reserved.
                     </p>
                 </div>
             </div>

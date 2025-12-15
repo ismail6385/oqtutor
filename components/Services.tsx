@@ -1,95 +1,93 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Book, BookOpen, Heart, Languages, MessageCircle, Star } from "lucide-react"
-
-const services = [
-    {
-        title: "Quran Reading",
-        description: "Learn to read Quran with proper pronunciation (Tajweed) from basics (Norani Qaida).",
-        icon: BookOpen,
-    },
-    {
-        title: "Tajweed",
-        description: "Master the rules of Tajweed to recite the Quran beautifully and correctly.",
-        icon: Star,
-    },
-    {
-        title: "Hifz (Memorization)",
-        description: "Commit the Holy Quran to heart with our structured memorization program.",
-        icon: Heart,
-    },
-    {
-        title: "Islamic Studies",
-        description: "Learn about Fiqh, Seerah, Hadith, and other essential Islamic sciences.",
-        icon: Book,
-    },
-    {
-        title: "Arabic Language",
-        description: "Learn to speak, read, and understand the Arabic language.",
-        icon: Languages,
-    },
-    {
-        title: "Tafseer",
-        description: "Understand the deeper meanings and interpretations of the Quranic verses.",
-        icon: MessageCircle,
-    },
-]
+import { BookOpen, Languages, Brain, Star, GraduationCap, Heart, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Services() {
+    const services = [
+        {
+            icon: BookOpen,
+            title: 'Quran Reading',
+            description: 'Learn to read the Quran with proper pronunciation and fluency from beginner to advanced levels.',
+            link: '/courses/quran-reading',
+        },
+        {
+            icon: Star,
+            title: 'Tajweed',
+            description: 'Master the rules of Tajweed to recite the Quran beautifully with correct articulation points.',
+            link: '/courses/tajweed',
+        },
+        {
+            icon: Brain,
+            title: 'Hifz (Memorization)',
+            description: 'Structured memorization program with proven techniques to help you memorize the entire Quran.',
+            link: '/courses/hifz',
+        },
+        {
+            icon: Languages,
+            title: 'Arabic Language',
+            description: 'Learn Arabic from scratch or improve your existing skills to understand the Quran better.',
+            link: '/courses/arabic',
+        },
+        {
+            icon: GraduationCap,
+            title: 'Islamic Studies',
+            description: 'Comprehensive Islamic education covering Fiqh, Hadith, Seerah, and Islamic history.',
+            link: '/courses/islamic-studies',
+        },
+        {
+            icon: Heart,
+            title: 'Tafseer',
+            description: 'Understand the deeper meanings and context of Quranic verses through detailed Tafseer lessons.',
+            link: '/courses/tafseer',
+        },
+    ]
+
     return (
-        <div className="bg-zinc-50 dark:bg-zinc-900 py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl lg:text-center">
-                    <h2 className="text-base font-semibold leading-7 text-primary">
-                        Our Courses
+        <section className="py-16 md:py-24 bg-secondary">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                {/* Section Header */}
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                        Comprehensive Quran & Islamic education
                     </h2>
-                    <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        Comprehensive Islamic Education
-                    </p>
-                    <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                        We offer a wide range of courses tailored to students of all ages and levels.
+
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        Choose from our wide range of courses designed to help you grow in your Islamic knowledge
                     </p>
                 </div>
-                <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
+                {/* Services Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
-                        <motion.div
-                            key={service.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        <Link
+                            key={index}
+                            href={service.link}
+                            className="block p-8 rounded-2xl border border-border bg-white hover:border-primary/30 hover:shadow-xl transition-all duration-300"
                         >
-                            <Card className="flex flex-col justify-between h-full hover:shadow-lg transition-shadow duration-300">
-                                <CardHeader>
-                                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                        <service.icon className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <CardTitle>{service.title}</CardTitle>
-                                    <CardDescription className="mt-2">
-                                        {service.description}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardFooter>
-                                    <Button className="w-full" variant="outline" asChild>
-                                        <Link href="/services">Learn More</Link>
-                                    </Button>
-                                </CardFooter>
-                            </Card>
-                        </motion.div>
+                            {/* Icon */}
+                            <div className="w-16 h-16 rounded-2xl bg-primary/10 mb-6 flex items-center justify-center">
+                                <service.icon className="w-8 h-8 text-primary" />
+                            </div>
+
+                            {/* Content */}
+                            <h3 className="text-2xl font-bold text-foreground mb-3">
+                                {service.title}
+                            </h3>
+
+                            <p className="text-muted-foreground leading-relaxed mb-6">
+                                {service.description}
+                            </p>
+
+                            {/* Learn More Link */}
+                            <div className="flex items-center gap-2 text-primary font-semibold">
+                                Learn more
+                                <ArrowRight className="w-4 h-4" />
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

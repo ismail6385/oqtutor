@@ -1,172 +1,350 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-    faPlay,
-    faStar,
-    faCheckCircle,
-    faUserGraduate,
-    faClock,
-    faVideo
-} from "@fortawesome/free-solid-svg-icons"
+import { ArrowRight, Star, BookOpen, Sparkles, Brain, Languages, GraduationCap, Heart } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Hero() {
+    const stats = [
+        { value: '30+', label: 'tutors' },
+        { value: '300+', label: 'students' },
+        { value: '4.8', label: 'Star' },
+    ]
+
+    const popularCourses = [
+        'Quran Reading',
+        'Tajweed',
+        'Hifz',
+        'Arabic',
+        'Islamic Studies',
+        'Tafseer',
+    ]
+
+    const courses = [
+        {
+            name: 'Quran Reading',
+            icon: BookOpen,
+            href: '/courses/nazara-quran'
+        },
+        {
+            name: 'Tajweed',
+            icon: Sparkles,
+            href: '/courses/recitation'
+        },
+        {
+            name: 'Hifz',
+            icon: Brain,
+            href: '/courses/hifz'
+        },
+        {
+            name: 'Arabic',
+            icon: Languages,
+            href: '/courses/arabic'
+        },
+        {
+            name: 'Islamic Studies',
+            icon: GraduationCap,
+            href: '/courses/islamic-studies'
+        },
+        {
+            name: 'Tafseer',
+            icon: Heart,
+            href: '/courses/tafseer'
+        },
+    ]
+
+    // Hero images (Students)
+    const tutorImages = [
+        '/images/hero-student-1.jpg',
+        '/images/hero-student-2.jpg',
+        '/images/hero-student-3.jpg',
+    ]
+
     return (
-        <div className="relative overflow-hidden bg-background pt-[120px] pb-20 lg:pt-[160px] lg:pb-32">
-            {/* Ambient Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden -z-10 pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px]" />
-            </div>
+        <>
+            {/* Hero Section - Preply Style with Images LEFT, Text RIGHT */}
+            <section
+                className="relative overflow-hidden"
+                style={{
+                    backgroundColor: '#ff7aac',
+                    width: '100%',
+                    maxWidth: '1920px',
+                    minHeight: '469px',
+                    margin: '0 auto',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}
+            >
+                <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 h-full flex items-center">
+                    <div className="grid lg:grid-cols-2 gap-2 lg:gap-4 items-center w-full">
 
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        {/* RIGHT Column - Overlapping Images */}
+                        <div className="hidden lg:flex items-center justify-start relative h-[350px] lg:order-last">
+                            <div className="relative w-full max-w-[480px] h-full">
 
-                    {/* Left Column: Copy & CTA */}
-                    <div className="relative z-10 max-w-2xl">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            {/* Trust Badge */}
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-8 border border-primary/20">
-                                <span className="relative flex h-2.5 w-2.5">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
-                                </span>
-                                #1 Rated Online Quran Academy
+                                {/* Back Left Image */}
+                                <div
+                                    className="absolute rounded-2xl overflow-hidden shadow-xl"
+                                    style={{
+                                        width: '160px',
+                                        height: '200px',
+                                        left: '30px',
+                                        top: '30px',
+                                        transform: 'rotate(-6deg)',
+                                        zIndex: 1,
+                                        border: '4px solid rgba(255,255,255,0.3)',
+                                    }}
+                                >
+                                    <Image
+                                        src={tutorImages[0]}
+                                        alt="Quran Student"
+                                        fill
+                                        className="object-cover"
+                                        sizes="160px"
+                                    />
+                                </div>
+
+                                {/* Center Main Image */}
+                                <div
+                                    className="absolute rounded-2xl overflow-hidden shadow-2xl"
+                                    style={{
+                                        width: '220px',
+                                        height: '280px',
+                                        left: '50%',
+                                        top: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        zIndex: 3,
+                                        border: '5px solid rgba(255,255,255,0.4)',
+                                    }}
+                                >
+                                    <Image
+                                        src={tutorImages[1]}
+                                        alt="Online Quran Learning"
+                                        fill
+                                        className="object-cover"
+                                        sizes="220px"
+                                    />
+                                </div>
+
+                                {/* Back Right Image */}
+                                <div
+                                    className="absolute rounded-2xl overflow-hidden shadow-xl"
+                                    style={{
+                                        width: '160px',
+                                        height: '200px',
+                                        right: '20px',
+                                        top: '40px',
+                                        transform: 'rotate(6deg)',
+                                        zIndex: 2,
+                                        border: '4px solid rgba(255,255,255,0.3)',
+                                    }}
+                                >
+                                    <Image
+                                        src={tutorImages[2]}
+                                        alt="Islamic Studies Student"
+                                        fill
+                                        className="object-cover"
+                                        sizes="160px"
+                                    />
+                                </div>
+
+                                {/* Decorative Elements */}
+                                <div
+                                    className="absolute bg-white/20 rounded-full"
+                                    style={{
+                                        width: '60px',
+                                        height: '60px',
+                                        right: '5px',
+                                        bottom: '50px',
+                                        zIndex: 0,
+                                    }}
+                                />
+                                <div
+                                    className="absolute bg-white/15 rounded-full"
+                                    style={{
+                                        width: '40px',
+                                        height: '40px',
+                                        left: '10px',
+                                        bottom: '70px',
+                                        zIndex: 0,
+                                    }}
+                                />
                             </div>
-
-                            {/* Headline */}
-                            <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-6 leading-[1.1]">
-                                Connect with the <br />
-                                <span className="text-primary relative inline-block">
-                                    Quran
-                                    <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                                    </svg>
-                                </span>
-                                {" "}from Home
-                            </h1>
-
-                            {/* Subheadline */}
-                            <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-lg">
-                                Experience personalized 1-on-1 Quran classes with certified tutors.
-                                Flexible schedules, female tutors available, and a curriculum tailored to you.
-                            </p>
-
-                            {/* CTAs */}
-                            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                                <Button size="lg" className="h-14 px-8 rounded-full text-lg font-semibold shadow-xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300" asChild>
-                                    <Link href="/register">
-                                        Book Free Trial
-                                    </Link>
-                                </Button>
-                                <Button variant="outline" size="lg" className="h-14 px-8 rounded-full text-lg font-semibold border-2 hover:bg-secondary/50" asChild>
-                                    <Link href="/tutors">
-                                        <FontAwesomeIcon icon={faPlay} className="mr-2 h-4 w-4 text-primary" />
-                                        View Tutors
-                                    </Link>
-                                </Button>
-                            </div>
-
-                            {/* Trust Signals / Features */}
-                            <div className="grid grid-cols-3 gap-6 border-t border-border pt-8">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <FontAwesomeIcon icon={faUserGraduate} className="h-5 w-5 text-primary" />
-                                        <span className="font-bold text-foreground">Expert</span>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground">Al-Azhar Tutors</p>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <FontAwesomeIcon icon={faClock} className="h-5 w-5 text-primary" />
-                                        <span className="font-bold text-foreground">24/7</span>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground">Flexible Timing</p>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <FontAwesomeIcon icon={faVideo} className="h-5 w-5 text-primary" />
-                                        <span className="font-bold text-foreground">1-on-1</span>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground">Live Classes</p>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    {/* Right Column: Visuals */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative lg:h-[700px] flex items-center justify-center"
-                    >
-                        {/* Main Image Container */}
-                        <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] border-white bg-zinc-100">
-                            <img
-                                src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=2070&auto=format&fit=crop"
-                                alt="Student learning Quran online"
-                                className="object-cover w-full h-full scale-105 hover:scale-110 transition-transform duration-1000"
-                            />
-
-                            {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-
-                            {/* Floating Glass Card 1: Rating */}
-                            <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.6 }}
-                                className="absolute top-8 right-8 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/20"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-full">
-                                        <FontAwesomeIcon icon={faStar} className="h-5 w-5 text-yellow-500" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-foreground leading-none">4.9/5.0</p>
-                                        <p className="text-xs text-muted-foreground mt-1">Parent Reviews</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            {/* Floating Glass Card 2: Active Students */}
-                            <motion.div
-                                initial={{ y: -20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.8 }}
-                                className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/20 max-w-[260px]"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="bg-primary/10 p-3 rounded-full">
-                                        <FontAwesomeIcon icon={faCheckCircle} className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-foreground text-sm">Satisfaction Guarantee</p>
-                                        <p className="text-xs text-muted-foreground mt-1">Not happy? Get a full refund within the first week.</p>
-                                    </div>
-                                </div>
-                            </motion.div>
                         </div>
 
-                        {/* Decorative Elements behind image */}
-                        <div className="absolute -z-10 top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-                        <svg className="absolute -z-10 -bottom-12 -left-12 w-32 h-32 text-primary/10" viewBox="0 0 100 100" fill="currentColor">
-                            <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                <circle cx="2" cy="2" r="2" />
-                            </pattern>
-                            <rect width="100" height="100" fill="url(#dots)" />
-                        </svg>
-                    </motion.div>
+                        {/* LEFT Column - Text Content */}
+                        <div className="flex flex-col justify-center items-end lg:order-first">
+                            <div className="flex flex-col items-start">
+                                <h1
+                                    className="mb-6"
+                                    style={{
+                                        fontFamily: "Platform, Platform-fallback, Platform-fallback-android, 'Noto Sans', NotoSans-fallback, NotoSans-fallback-android, sans-serif",
+                                        fontSize: '64px',
+                                        fontWeight: 500,
+                                        lineHeight: '68px',
+                                        color: 'rgb(18, 17, 23)',
+                                    }}
+                                >
+                                    Learn Quran<br />
+                                    with your best<br />
+                                    online tutor.
+                                </h1>
+
+                                <Link
+                                    href="/tutors"
+                                    className="inline-flex items-center justify-center gap-2 px-14 py-3 rounded-lg font-semibold text-lg transition-all duration-300 hover:opacity-90"
+                                    style={{
+                                        backgroundColor: '#121117',
+                                        color: '#ffffff',
+                                        fontFamily: "'Platform', 'Platform-fallback', 'Platform-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif"
+                                    }}
+                                >
+                                    Find your tutor
+                                    <ArrowRight className="w-5 h-5" />
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Mobile Image View */}
+                        <div className="flex lg:hidden justify-center mt-8 order-first">
+                            <div className="relative w-[280px] h-[200px]">
+                                <div
+                                    className="absolute rounded-xl overflow-hidden shadow-lg"
+                                    style={{
+                                        width: '120px',
+                                        height: '150px',
+                                        left: '0',
+                                        top: '20px',
+                                        transform: 'rotate(-5deg)',
+                                        zIndex: 1,
+                                        border: '3px solid rgba(255,255,255,0.3)',
+                                    }}
+                                >
+                                    <Image
+                                        src={tutorImages[0]}
+                                        alt="Student"
+                                        fill
+                                        className="object-cover"
+                                        sizes="120px"
+                                    />
+                                </div>
+                                <div
+                                    className="absolute rounded-xl overflow-hidden shadow-xl"
+                                    style={{
+                                        width: '140px',
+                                        height: '170px',
+                                        left: '50%',
+                                        top: '0',
+                                        transform: 'translateX(-50%)',
+                                        zIndex: 2,
+                                        border: '3px solid rgba(255,255,255,0.4)',
+                                    }}
+                                >
+                                    <Image
+                                        src={tutorImages[1]}
+                                        alt="Student"
+                                        fill
+                                        className="object-cover"
+                                        sizes="140px"
+                                    />
+                                </div>
+                                <div
+                                    className="absolute rounded-xl overflow-hidden shadow-lg"
+                                    style={{
+                                        width: '120px',
+                                        height: '150px',
+                                        right: '0',
+                                        top: '20px',
+                                        transform: 'rotate(5deg)',
+                                        zIndex: 1,
+                                        border: '3px solid rgba(255,255,255,0.3)',
+                                    }}
+                                >
+                                    <Image
+                                        src={tutorImages[2]}
+                                        alt="Student"
+                                        fill
+                                        className="object-cover"
+                                        sizes="120px"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </section>
+
+            {/* Stats Section - White Background */}
+            <section className="py-12 bg-white">
+                <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-[1920px]">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+                        {stats.map((stat, index) => (
+                            <div key={index} className="text-center">
+                                <div
+                                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2"
+                                    style={{
+                                        color: '#121117',
+                                        fontFamily: "'Platform', 'Platform-fallback', 'Platform-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif",
+                                        fontWeight: 500,
+                                        lineHeight: '1.2'
+                                    }}
+                                >
+                                    {stat.value}
+                                </div>
+                                <div
+                                    className="text-sm md:text-base"
+                                    style={{
+                                        color: '#6B6B6B',
+                                        fontWeight: 400
+                                    }}
+                                >
+                                    {stat.label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Courses Section - Preply Style Grid */}
+            <section className="py-12 bg-white">
+                <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-[1920px]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {courses.map((course, index) => {
+                            const IconComponent = course.icon
+                            return (
+                                <Link
+                                    key={index}
+                                    href={course.href}
+                                    className="flex items-center gap-4 p-4 bg-white border border-border rounded-lg hover:border-primary/30 hover:shadow-md transition-all duration-300 group"
+                                >
+                                    {/* Icon */}
+                                    <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <IconComponent className="w-6 h-6 text-foreground" />
+                                    </div>
+
+                                    {/* Text Content */}
+                                    <div className="flex-1 min-w-0">
+                                        <div
+                                            className="font-bold text-base"
+                                            style={{
+                                                color: '#121117',
+                                                fontFamily: "'Platform', 'Platform-fallback', 'Platform-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif",
+                                                fontWeight: 500
+                                            }}
+                                        >
+                                            {course.name}
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <ArrowRight className="w-5 h-5 text-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
+            </section>
+        </>
     )
 }

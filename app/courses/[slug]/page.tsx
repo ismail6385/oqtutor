@@ -21,6 +21,14 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import NamazLiveClassPage from "@/components/NamazLiveClassPage"
+import TafseerLiveClassPage from "@/components/TafseerLiveClassPage"
+import HifzLiveClassPage from "@/components/HifzLiveClassPage"
+import RecitationLiveClassPage from "@/components/RecitationLiveClassPage"
+import NazaraQuranLiveClassPage from "@/components/NazaraQuranLiveClassPage"
+import NaoraniQaedahLiveClassPage from "@/components/NaoraniQaedahLiveClassPage"
+import IslamicStudiesLiveClassPage from "@/components/IslamicStudiesLiveClassPage"
+import ArabicLanguageLiveClassPage from "@/components/ArabicLanguageLiveClassPage"
 
 export default function CoursePage() {
     const params = useParams()
@@ -30,44 +38,106 @@ export default function CoursePage() {
         return notFound()
     }
 
+    // Show dedicated live class page for Namaz course
+    if (course.slug === "namaz-islamic-knowledge") {
+        return <NamazLiveClassPage />
+    }
+
+    // Show dedicated live class page for Tafseer course
+    if (course.slug === "tafseer") {
+        return <TafseerLiveClassPage />
+    }
+
+    // Show dedicated live class page for Hifz course
+    if (course.slug === "hifz") {
+        return <HifzLiveClassPage />
+    }
+
+    // Show dedicated live class page for Recitation course
+    if (course.slug === "recitation") {
+        return <RecitationLiveClassPage />
+    }
+
+    // Show dedicated live class page for Nazara Quran course
+    if (course.slug === "nazara-quran") {
+        return <NazaraQuranLiveClassPage />
+    }
+
+    // Show dedicated live class page for Naorani Qaedah course
+    if (course.slug === "naorani-qaedah") {
+        return <NaoraniQaedahLiveClassPage />
+    }
+
+    // Show dedicated live class page for Islamic Studies course
+    if (course.slug === "islamic-studies") {
+        return <IslamicStudiesLiveClassPage />
+    }
+
+    // Show dedicated live class page for Arabic Language course
+    if (course.slug === "arabic") {
+        return <ArabicLanguageLiveClassPage />
+    }
+
     return (
         <div className="bg-background min-h-screen">
             {/* Hero Section */}
             <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-                {/* Background Gradient (No Image) */}
+                {/* Background Image & Gradient */}
                 <div className="absolute inset-0 z-0">
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            background: `linear-gradient(135deg, ${course.color || '#0f172a'} 0%, #020617 100%)`
-                        }}
-                    />
-                    {/* Subtle pattern overlay for texture */}
-                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
+                    {course.heroImage ? (
+                        <img
+                            src={course.heroImage}
+                            alt={course.title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div
+                            className="w-full h-full"
+                            style={{
+                                background: `linear-gradient(135deg, ${course.color || '#0f172a'} 0%, #020617 100%)`
+                            }}
+                        />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-black/40" />
+                    <div className="absolute inset-0 opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
                 </div>
 
-                <div className="relative z-10 container mx-auto px-6 text-center">
+                <div className="relative z-10 container mx-auto px-6 text-center pt-20">
+                    {/* Breadcrumbs */}
+                    <nav className="flex justify-center items-center gap-2 text-sm text-gray-300 mb-8 animate-fade-in">
+                        <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+                        <span>/</span>
+                        <Link href="/services" className="hover:text-primary transition-colors">Courses</Link>
+                        <span>/</span>
+                        <span className="text-white font-medium">{course.title}</span>
+                    </nav>
+
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
                         <span
-                            className="inline-block px-4 py-1.5 rounded-full text-white border border-white/30 backdrop-blur-md text-sm font-semibold mb-6 shadow-lg"
-                            style={{ backgroundColor: course.color ? `${course.color}80` : 'rgba(255,255,255,0.2)' }}
+                            className="inline-block px-4 py-1.5 rounded-full text-white border border-white/20 backdrop-blur-md text-sm font-semibold mb-6 shadow-lg bg-white/10"
                         >
                             {course.category} Course
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+                        <h1
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg"
+                            style={{
+                                fontFamily: "'Platform', 'Platform-fallback', 'Platform-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif",
+                                fontWeight: 500
+                            }}
+                        >
                             {course.title}
                         </h1>
-                        <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed">
+                        <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md">
                             {course.description}
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Button
                                 size="lg"
-                                className="h-14 px-8 rounded-full text-lg font-semibold shadow-lg transition-all text-white border-0"
+                                className="h-14 px-8 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transition-all text-white border-0 hover:scale-105"
                                 style={{
                                     backgroundColor: course.color || 'hsl(var(--primary))',
                                     boxShadow: `0 10px 25px -5px ${course.color}80`
@@ -76,7 +146,7 @@ export default function CoursePage() {
                             >
                                 <Link href="/register">Enroll Now</Link>
                             </Button>
-                            <Button variant="outline" size="lg" className="h-14 px-8 rounded-full text-lg font-semibold bg-white/5 border-white/20 text-white hover:bg-white/10" asChild>
+                            <Button variant="outline" size="lg" className="h-14 px-8 rounded-full text-lg font-semibold bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-all" asChild>
                                 <Link href="#curriculum">View Curriculum</Link>
                             </Button>
                         </div>
@@ -244,6 +314,42 @@ export default function CoursePage() {
                                 </Button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Related Courses Section */}
+            <div className="bg-zinc-50 dark:bg-zinc-900/50 py-24">
+                <div className="container mx-auto px-6">
+                    <h2 className="text-3xl font-bold mb-12 text-center">Other Courses You Might Like</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {courses
+                            .filter(c => c.category === course.category && c.slug !== course.slug)
+                            .slice(0, 3)
+                            .map((relatedCourse) => (
+                                <Link href={`/courses/${relatedCourse.slug}`} key={relatedCourse.slug} className="group">
+                                    <div className="bg-background rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                                        <div className="relative h-48 overflow-hidden">
+                                            <img
+                                                src={relatedCourse.heroImage}
+                                                alt={relatedCourse.title}
+                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            />
+                                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                                            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-sm">
+                                                <FontAwesomeIcon icon={relatedCourse.icon} className="h-4 w-4 text-primary" />
+                                            </div>
+                                        </div>
+                                        <div className="p-6 flex-grow flex flex-col">
+                                            <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{relatedCourse.title}</h3>
+                                            <p className="text-muted-foreground text-sm line-clamp-2 mb-4 flex-grow">{relatedCourse.description}</p>
+                                            <div className="flex items-center text-sm font-medium text-primary">
+                                                View Details <FontAwesomeIcon icon={faArrowLeft} className="ml-2 h-3 w-3 rotate-180" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
                     </div>
                 </div>
             </div>
